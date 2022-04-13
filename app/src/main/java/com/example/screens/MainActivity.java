@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void onButtonClick(){
         Intent intent = new Intent(this, SecondActivity.class);
-        intent.putExtra("NAME", "hejsan");
+        intent.putExtra(getString(R.string.Car_name_gemera), getString(R.string.Car_picture_value_gemera));
         startActivity(intent);
     }
 }

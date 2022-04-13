@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Screens</string>
     <string name="launch_second_activity">Launch second activity</string>
+    <string name="the_clicked_picture_in_mainactivity">the clicked picture in mainactivity</string>
+    <string name="Car_name_gemera">Gemera</string>
+    <string name="Car_picture_value_gemera">gemera</string>
 </resources>
