@@ -1,43 +1,60 @@
 
 # Rapport
 
-**Skriv din rapport här!**
-testar igen
-testar från laptop
-_Du kan ta bort all text som finns sedan tidigare_.
+I denna uppgift skapades en andra activity dit data skulle skickas från main activity via intents och bundles. Main activity innehåller en bild på en Koenigsegg Gemera och en knapp
+som tar en vidare till den andra activityn. Den informationen som skickas via intent är textsträngen "gemera" som sedan skrivs ut i en TextView i den andra activityn.
 
-## Följande grundsyn gäller dugga-svar:
 
-- Ett kortfattat svar är att föredra. Svar som är längre än en sida text (skärmdumpar och programkod exkluderat) är onödigt långt.
-- Svaret skall ha minst en snutt programkod.
-- Svaret skall inkludera en kort övergripande förklarande text som redogör för vad respektive snutt programkod gör eller som svarar på annan teorifråga.
-- Svaret skall ha minst en skärmdump. Skärmdumpar skall illustrera exekvering av relevant programkod. Eventuell text i skärmdumpar måste vara läsbar.
-- I de fall detta efterfrågas, dela upp delar av ditt svar i för- och nackdelar. Dina för- respektive nackdelar skall vara i form av punktlistor med kortare stycken (3-4 meningar).
-
-Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
-
+Koden för Main activity ser ut som nedan. Activityn består utav en imageView som helt enkelt innehåller en bild. Sedan har activityn en Button som har en listener
+som callar funktionen onButtonClick(). Där skapas ett intent till den andra activityn och startar den activityn.
 ```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
+  ImageView imageView;
+    Button button;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        button = findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                   onButtonClick();
+            }
+        }
+        );
+
+        imageView = findViewById(R.id.gemera);
     }
-}
+
+    private void onButtonClick(){
+        Intent intent = new Intent(this, SecondActivity.class);
+        intent.putExtra(getString(R.string.Car_name_gemera), getString(R.string.Car_picture_value_gemera));
+        startActivity(intent);
+    }
 ```
 
-Bilder läggs i samma mapp som markdown-filen.
+Den andra activityn hämtar intentet och skriver ut värdet från intentet i en textView.
 
-![](android.png)
+```
+ Intent intent;
+    TextView textView;
 
-Läs gärna:
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_second);
 
-- Boulos, M.N.K., Warren, J., Gong, J. & Yue, P. (2010) Web GIS in practice VIII: HTML5 and the canvas element for interactive online mapping. International journal of health geographics 9, 14. Shin, Y. &
-- Wunsche, B.C. (2013) A smartphone-based golf simulation exercise game for supporting arthritis patients. 2013 28th International Conference of Image and Vision Computing New Zealand (IVCNZ), IEEE, pp. 459–464.
-- Wohlin, C., Runeson, P., Höst, M., Ohlsson, M.C., Regnell, B., Wesslén, A. (2012) Experimentation in Software Engineering, Berlin, Heidelberg: Springer Berlin Heidelberg.
+        intent = getIntent();
+        textView = findViewById(R.id.secondActivityTextView);
+        String carName = intent.getStringExtra("Gemera") + " is the car in the previous activity.";
+        textView.setText(carName);
+
+```
+
+Main activity:
+![](gemeraActivity.png)
+
+Second activity:
+![](secondActivity.png)

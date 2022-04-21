@@ -26,6 +26,4 @@ public class SecondActivity extends AppCompatActivity {
         textView.setText(carName);
 
     }
-
-
 }
