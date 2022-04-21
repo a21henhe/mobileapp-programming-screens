@@ -14,7 +14,6 @@ import java.util.Locale;
 public class SecondActivity extends AppCompatActivity {
     Intent intent;
     TextView textView;
-    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,23 +22,8 @@ public class SecondActivity extends AppCompatActivity {
 
         intent = getIntent();
         textView = findViewById(R.id.secondActivityTextView);
-        String carName = intent.getStringExtra("Gemera");
+        String carName = intent.getStringExtra("Gemera") + " is the car in the previous activity.";
         textView.setText(carName);
-
-        Log.d("test", carName);
-
-       /* Context context = imageView.getContext();
-
-        int id = context.getResources().getIdentifier(carName.toLowerCase(Locale.ROOT), "drawable", context.getPackageName());
-        imageView = findViewById(R.id.carPicture);
-        imageView.setImageResource(id);*/
-
-
-        ImageView myImageView = (ImageView)findViewById(R.id.car_picture);
-        myImageView.setImageResource(0);
-        myImageView.setImageResource(R.drawable.gemera);
-
-
 
     }
 
